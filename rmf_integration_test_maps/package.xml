@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rmf_integration_test_maps</name>
+  <version>0.0.1</version>
+  <description>Uses rmf_test_map_tools to generate some maps</description>
+  <maintainer email="morgan@openrobotics.org">Morgan Quigley</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rmf_test_map_tools</buildtool_depend>
+  <buildtool_depend>rmf_building_map_tools</buildtool_depend>
+  <buildtool_depend>ros2run</buildtool_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
