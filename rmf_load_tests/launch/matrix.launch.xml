@@ -1,0 +1,35 @@
+<?xml version='1.0' ?>
+
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="failover_mode" default="false"/>
+
+  <!-- Common launch -->
+  <include file="$(find-pkg-share rmf_load_tests)/launch/common.launch.xml">
+    <arg name="use_sim_time" value="$(var use_sim_time)"/>
+    <arg name="config_file" value="$(find-pkg-share rmf_integration_test_maps)/maps/matrix882.building.yaml"/>
+      <!--<arg name="viz_config_file" value ="$(find-pkg-share rmf_demos)/include/office/office.rviz"/>-->
+      <!--<arg name="dashboard_config_file" value="$(find-pkg-share rmf_demos_dashboard_resources)/office/dashboard_config.json"/>-->
+  </include>
+
+  <include file="$(find-pkg-share rmf_load_tests)/launch/simulation.launch.xml">
+    <arg name="map_name" value="matrix882" />
+  </include>
+
+  <!-- TinyRobot fleet adapter and robot state aggregator needed for the TinyRobot slotcar_plugin -->
+  <group>
+    <let name="fleet_name" value="tinyRobot"/>
+    <include file="$(find-pkg-share rmf_load_tests)/launch/tinyRobot_adapter.launch.xml">
+      <arg name="fleet_name" value="$(var fleet_name)"/>
+      <arg name="use_sim_time" value="$(var use_sim_time)"/>
+      <arg name="nav_graph_file" value="$(find-pkg-share rmf_integration_test_maps)/maps/matrix882/nav_graphs/0.yaml" />
+    </include>
+    <include file="$(find-pkg-share rmf_fleet_adapter)/robot_state_aggregator.launch.xml">
+      <arg name="robot_prefix" value="tinyRobot"/>
+      <arg name="fleet_name" value="$(var fleet_name)"/>
+      <arg name="use_sim_time" value="$(var use_sim_time)"/>
+      <arg name="failover_mode" value="$(var failover_mode)"/>
+    </include>
+  </group>
+
+</launch>

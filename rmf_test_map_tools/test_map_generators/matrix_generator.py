@@ -110,8 +110,21 @@ class MatrixGenerator:
             [0, 1, {'distance': [3, 1.0]}]
         ]
 
+        floor_vertex_names = [
+            'exterior_0',
+            'exterior_1',
+            'exterior_2',
+            'exterior_3']
+
+        floors = [
+            {
+                'vertices': [vidx_lookup[name] for name in floor_vertex_names]
+            }
+        ]
+
         level_yaml = {
           'elevation': 0,
+          'floors': floors,
           'lanes': lanes,
           'layers': {},
           'measurements': measurements,

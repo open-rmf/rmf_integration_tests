@@ -27,6 +27,11 @@ add_custom_command(
   OUTPUT ${map_path}
 )
 
+install(FILES
+  ${map_path}
+  DESTINATION share/${PROJECT_NAME}/maps
+)
+
 add_custom_command(
   COMMAND ros2 run rmf_building_map_tools building_map_generator gazebo ${map_path} ${output_world_path} ${output_model_dir}
   OUTPUT ${output_world_path}
